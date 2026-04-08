@@ -1,13 +1,14 @@
 import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, TimerAction
 from launch.conditions import IfCondition
 from launch.substitutions import LaunchConfiguration
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node, ComposableNodeContainer
 from launch_ros.descriptions import ComposableNode
 from launch_ros.parameter_descriptions import ParameterValue
+
 
 def generate_launch_description():
     # --- Path Setup ---
@@ -88,12 +89,13 @@ def generate_launch_description():
                     parameters=[{
                         'publish_odom_to_base_tf': False,
                         'publish_map_to_odom_tf': False,
-                        'base_frame': 'base_link',
+                        'base_frame': 'base_footprint',
                         'input_left_camera_frame': 'camera_infra1_optical_frame', # Updated to match RealSense TF
                         'input_right_camera_frame': 'camera_infra2_optical_frame', # Updated to match RealSense TF
                         'input_imu_frame': 'imu',
                         'enable_imu_fusion': False,
                         'enable_rectified_pose': True,
+                        'image_jitter_threshold_ms': 75.0,
                     }],
                     remappings=[
                         ('/visual_slam/image_0', '/camera/camera/infra1/image_rect_raw'),
@@ -154,41 +156,39 @@ def generate_launch_description():
         Node(
             package='nav2_costmap_2d',
             executable='nav2_costmap_2d',
-            # Removed the name='local_costmap' override to let it use its native name
             output='screen',
             parameters=[costmap_config_path]
         ),
         
-        Node(
-            package='nav2_lifecycle_manager',
-            executable='lifecycle_manager',
-            name='lifecycle_manager_navigation',
-            output='screen',
-            parameters=[
-                {'autostart': True},
-                {'node_names': ['costmap/costmap']} # <--- Changed to match the native node name
+        # Wrapped the Lifecycle Manager in a TimerAction to prevent the crash
+        TimerAction(
+            period=15.0,
+            actions=[
+                Node(
+                    package='nav2_lifecycle_manager',
+                    executable='lifecycle_manager',
+                    name='lifecycle_manager_navigation',
+                    output='screen',
+                    parameters=[
+                        {'autostart': True},
+                        {'node_names': ['costmap/costmap']},
+                        {'bond_timeout': 0.0},
+                        {'attempt_respawn_reconnection': False}
+                    ]
+                )
             ]
-        ),
-        
-        # 6. TF Bridge: Connect base_link to camera_link
-        Node(
-            package='tf2_ros',
-            executable='static_transform_publisher',
-            name='base_to_camera_tf',
-            arguments=['0', '0', '0', '0', '0', '0', 'base_link', 'camera_link'] # x, y, z, yaw, pitch, roll
         ),
         
         Node(
             package='witmotion_ros2',
-            executable='witmotion_ros2', # See note below if this throws an error
+            executable='witmotion_ros2',
             name='witmotion_imu',
             output='screen',
             parameters=[{
-                'port': '/dev/ttyUSB1', # Change to ttyUSB1, ttyACM0 etc. if needed
-                'baud_rate': 9600,      # Default is usually 9600. Try 115200 if it fails.
+                'port': '/dev/ttyUSB0',
+                'baud_rate': 9600,
             }],
             remappings=[
-                # Forces whatever topic the driver uses to become /imu/data for your EKF
                 ('imu', '/imu/data'),
                 ('/witmotion_imu/imu', '/imu/data')
             ]

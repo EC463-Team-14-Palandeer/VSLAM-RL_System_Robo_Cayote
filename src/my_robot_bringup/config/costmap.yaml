@@ -5,7 +5,7 @@ costmap: # <--- Changed to match native node name
       update_frequency: 5.0
       publish_frequency: 5.0
       global_frame: odom
-      robot_base_frame: base_link
+      robot_base_frame: base_footprint
       rolling_window: true
       width: 4
       height: 4
