@@ -2,7 +2,7 @@
 # license: Apache License 2.0
 # license url: http://www.apache.org/licenses/LICENSE-2.0
 # This is a proto file for Webots for the RoboCayote
-# Extracted from: C:\Users\bogda\OneDrive\Documents\Senior_Design_Project\robo_cayote_des.urdf
+# Extracted from: C:\Users\bogda\OneDrive\Documents\Senior_Design_Project\Robo_Cayote_Final.urdf
 
 PROTO RoboCayote [
   field  SFVec3f     translation     0 0 0
@@ -26,376 +26,78 @@ PROTO RoboCayote [
     synchronization IS synchronization
     selfCollision IS selfCollision
     children [
-      Pose {
-        translation 0.000000 0.140000 0.000000
+      Shape {
+        appearance PBRAppearance {
+          baseColor 0.500000 0.500000 0.500000
+          roughness 1.000000
+          metalness 0
+        }
+        geometry Box {
+           size 0.001000 0.001000 0.001000
+        }
+      }
+      Solid {
+        translation 0.000000 0.000000 0.260000
         children [
-          Shape {
-            appearance PBRAppearance {
-              baseColor 0.500000 0.500000 0.500000
-              roughness 1.000000
-              metalness 0
-            }
-            geometry Box {
-               size 0.840000 0.060000 0.435900
-            }
-          }
-        ]
-      }
-      SliderJoint {
-        jointParameters JointParameters {
-          axis 0.000000 1.000000 0.000000
-        }
-        device [
-          LinearMotor {
-            name "sliderjoint"
-            maxVelocity 10.0
-            minPosition -0.1
-            maxPosition 0.1
-            maxForce 10.0
-          }
-          PositionSensor {
-            name "sliderjoint_sensor"
-          }
-        ]
-        endPoint Solid {
-          translation 0.310000 0.020000 -0.280000
-          children [
-            Shape {
-              appearance PBRAppearance {
-                baseColor 0.500000 0.500000 0.500000
-                roughness 1.000000
-                metalness 0
-              }
-              geometry Box {
-                 size 0.001000 0.001000 0.001000
-              }
-            }
-            HingeJoint {
-              jointParameters HingeJointParameters {
-                axis 0.000000 1.000000 0.000000
-              }
-              device [
-                RotationalMotor {
-                  name "steer_motor_fr"
-                  maxVelocity 10.0
-                  maxTorque 5.0
+          Pose {
+            translation 0.000000 0.000000 0.030000
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.500000 0.500000 0.500000
+                  roughness 1.000000
+                  metalness 0
                 }
-                PositionSensor {
-                  name "steer_motor_fr_sensor"
-                }
-              ]
-              endPoint Solid {
-                children [
-                  Shape {
-                    appearance PBRAppearance {
-                      baseColor 0.500000 0.500000 0.500000
-                      roughness 1.000000
-                      metalness 0
-                    }
-                    geometry Box {
-                       size 0.001000 0.001000 0.001000
-                    }
-                  }
-                  HingeJoint {
-                    jointParameters HingeJointParameters {
-                      axis 0.000000 0.000000 1.000000
-                    }
-                    device [
-                      RotationalMotor {
-                        name "wheel_motor_fr"
-                        maxVelocity 10.0
-                        maxTorque 20.0
-                      }
-                      PositionSensor {
-                        name "wheel_motor_fr_sensor"
-                      }
-                    ]
-                    endPoint Solid {
-                      children [
-                        Shape {
-                          appearance PBRAppearance {
-                            baseColor 0.500000 0.500000 0.500000
-                            roughness 1.000000
-                            metalness 0
-                          }
-                          geometry Cylinder {
-                            radius 0.06
-                            height 0.05
-                          }
-                        }
-                        Solid {
-                          children [
-                            Shape {
-                              appearance PBRAppearance {
-                                baseColor 0.500000 0.500000 0.500000
-                                roughness 1.000000
-                                metalness 0
-                              }
-                              geometry Box {
-                                 size 0.001000 0.001000 0.001000
-                              }
-                            }
-                          ]
-                          name "appearance"
-                          physics Physics {
-                            density -1
-                            mass 0.010000
-                            centerOfMass [ 0.000000 0.000000 0.000000 ]
-                            inertiaMatrix [
-                              1.000000e-04 1.000000e-04 1.000000e-04
-                              0.000000e+00 0.000000e+00 0.000000e+00
-                            ]
-                          }
-                        }
-                      ]
-                      name "solid_1"
-                      boundingObject Cylinder {
-                        radius 0.06
-                        height 0.05
-                      }
-                      physics Physics {
-                        density -1
-                        mass 0.500000
-                        centerOfMass [ 0.000000 0.000000 0.000000 ]
-                        inertiaMatrix [
-                          1.000000e-03 1.000000e-03 1.000000e-03
-                          0.000000e+00 0.000000e+00 0.000000e+00
-                        ]
-                      }
-                    }
-                  }
-                ]
-                name "solid_0"
-                physics Physics {
-                  density -1
-                  mass 0.010000
-                  centerOfMass [ 0.000000 0.000000 0.000000 ]
-                  inertiaMatrix [
-                    1.000000e-04 1.000000e-04 1.000000e-04
-                    0.000000e+00 0.000000e+00 0.000000e+00
-                  ]
+                geometry Box {
+                   size 0.450000 0.310000 0.060000
                 }
               }
-            }
-          ]
-          name "solid"
-          physics Physics {
-            density -1
-            mass 0.010000
-            centerOfMass [ 0.000000 0.000000 0.000000 ]
-            inertiaMatrix [
-              1.000000e-04 1.000000e-04 1.000000e-04
-              0.000000e+00 0.000000e+00 0.000000e+00
             ]
           }
-        }
-      }
-      SliderJoint {
-        jointParameters JointParameters {
-          axis 0.000000 1.000000 0.000000
-        }
-        device [
-          LinearMotor {
-            name "sliderjoint_2"
-            maxVelocity 10.0
-            minPosition -0.1
-            maxPosition 0.1
-            maxForce 10.0
-          }
-          PositionSensor {
-            name "sliderjoint_2_sensor"
-          }
-        ]
-        endPoint Solid {
-          translation 0.310000 0.020000 0.280000
-          children [
-            Shape {
-              appearance PBRAppearance {
-                baseColor 0.500000 0.500000 0.500000
-                roughness 1.000000
-                metalness 0
-              }
-              geometry Box {
-                 size 0.001000 0.001000 0.001000
-              }
+          SliderJoint {
+            jointParameters JointParameters {
+              axis 0.000000 0.000000 1.000000
             }
-            HingeJoint {
-              jointParameters HingeJointParameters {
-                axis 0.000000 1.000000 0.000000
+            device [
+              LinearMotor {
+                name "sliderjoint"
+                maxVelocity 10.0
+                minPosition -0.1
+                maxPosition 0.1
+                maxForce 10.0
               }
-              device [
-                RotationalMotor {
-                  name "steer_motor_fl"
-                  maxVelocity 10.0
-                  maxTorque 5.0
-                }
-                PositionSensor {
-                  name "steer_motor_fl_sensor"
-                }
-              ]
-              endPoint Solid {
-                children [
-                  Shape {
-                    appearance PBRAppearance {
-                      baseColor 0.500000 0.500000 0.500000
-                      roughness 1.000000
-                      metalness 0
-                    }
-                    geometry Box {
-                       size 0.001000 0.001000 0.001000
-                    }
-                  }
-                  HingeJoint {
-                    jointParameters HingeJointParameters {
-                      axis 0.000000 0.000000 1.000000
-                    }
-                    device [
-                      RotationalMotor {
-                        name "wheel_motor_fl"
-                        maxVelocity 10.0
-                        maxTorque 20.0
-                      }
-                      PositionSensor {
-                        name "wheel_motor_fl_sensor"
-                      }
-                    ]
-                    endPoint Solid {
-                      children [
-                        Shape {
-                          appearance PBRAppearance {
-                            baseColor 0.500000 0.500000 0.500000
-                            roughness 1.000000
-                            metalness 0
-                          }
-                          geometry Cylinder {
-                            radius 0.06
-                            height 0.05
-                          }
-                        }
-                        Solid {
-                          children [
-                            Shape {
-                              appearance PBRAppearance {
-                                baseColor 0.500000 0.500000 0.500000
-                                roughness 1.000000
-                                metalness 0
-                              }
-                              geometry Box {
-                                 size 0.001000 0.001000 0.001000
-                              }
-                            }
-                          ]
-                          name "appearance_6"
-                          physics Physics {
-                            density -1
-                            mass 0.010000
-                            centerOfMass [ 0.000000 0.000000 0.000000 ]
-                            inertiaMatrix [
-                              1.000000e-04 1.000000e-04 1.000000e-04
-                              0.000000e+00 0.000000e+00 0.000000e+00
-                            ]
-                          }
-                        }
-                      ]
-                      name "solid_5"
-                      boundingObject Cylinder {
-                        radius 0.06
-                        height 0.05
-                      }
-                      physics Physics {
-                        density -1
-                        mass 0.500000
-                        centerOfMass [ 0.000000 0.000000 0.000000 ]
-                        inertiaMatrix [
-                          1.000000e-03 1.000000e-03 1.000000e-03
-                          0.000000e+00 0.000000e+00 0.000000e+00
-                        ]
-                      }
-                    }
-                  }
-                ]
-                name "solid_4"
-                physics Physics {
-                  density -1
-                  mass 0.010000
-                  centerOfMass [ 0.000000 0.000000 0.000000 ]
-                  inertiaMatrix [
-                    1.000000e-04 1.000000e-04 1.000000e-04
-                    0.000000e+00 0.000000e+00 0.000000e+00
-                  ]
-                }
+              PositionSensor {
+                name "sliderjoint_sensor"
               }
-            }
-          ]
-          name "solid_3"
-          physics Physics {
-            density -1
-            mass 0.010000
-            centerOfMass [ 0.000000 0.000000 0.000000 ]
-            inertiaMatrix [
-              1.000000e-04 1.000000e-04 1.000000e-04
-              0.000000e+00 0.000000e+00 0.000000e+00
             ]
-          }
-        }
-      }
-      SliderJoint {
-        jointParameters JointParameters {
-          axis 0.000000 1.000000 0.000000
-        }
-        device [
-          LinearMotor {
-            name "sliderjoint_7"
-            maxVelocity 10.0
-            minPosition -0.1
-            maxPosition 0.1
-            maxForce 10.0
-          }
-          PositionSensor {
-            name "sliderjoint_7_sensor"
-          }
-        ]
-        endPoint Solid {
-          translation -0.310000 0.020000 -0.280000
-          children [
-            Shape {
-              appearance PBRAppearance {
-                baseColor 0.500000 0.500000 0.500000
-                roughness 1.000000
-                metalness 0
-              }
-              geometry Box {
-                 size 0.001000 0.001000 0.001000
-              }
-            }
-            HingeJoint {
-              jointParameters HingeJointParameters {
-                axis 0.000000 0.000000 1.000000
-              }
-              device [
-                RotationalMotor {
-                  name "wheel_motor_rr"
-                  maxVelocity 10.0
-                  maxTorque 20.0
-                }
-                PositionSensor {
-                  name "wheel_motor_rr_sensor"
-                }
-              ]
-              endPoint Solid {
-                children [
-                  Shape {
-                    appearance PBRAppearance {
-                      baseColor 0.500000 0.500000 0.500000
-                      roughness 1.000000
-                      metalness 0
-                    }
-                    geometry Cylinder {
-                      radius 0.06
-                      height 0.05
-                    }
+            endPoint Solid {
+              translation 0.310000 -0.170000 -0.165000
+              children [
+                Shape {
+                  appearance PBRAppearance {
+                    baseColor 0.500000 0.500000 0.500000
+                    roughness 1.000000
+                    metalness 0
                   }
-                  Solid {
+                  geometry Box {
+                     size 0.001000 0.001000 0.001000
+                  }
+                }
+                HingeJoint {
+                  jointParameters HingeJointParameters {
+                    axis 0.000000 0.000000 1.000000
+                  }
+                  device [
+                    RotationalMotor {
+                      name "steer_motor_fr"
+                      maxVelocity 10.0
+                      maxTorque 5.0
+                    }
+                    PositionSensor {
+                      name "steer_motor_fr_sensor"
+                    }
+                  ]
+                  endPoint Solid {
                     children [
                       Shape {
                         appearance PBRAppearance {
@@ -407,8 +109,86 @@ PROTO RoboCayote [
                            size 0.001000 0.001000 0.001000
                         }
                       }
+                      HingeJoint {
+                        jointParameters HingeJointParameters {
+                          axis 0.000000 1.000000 0.000000
+                        }
+                        device [
+                          RotationalMotor {
+                            name "wheel_motor_fr"
+                            maxVelocity 10.0
+                            maxTorque 20.0
+                          }
+                          PositionSensor {
+                            name "wheel_motor_fr_sensor"
+                          }
+                        ]
+                        endPoint Solid {
+                          children [
+                            Pose {
+                              rotation 1.000000 0.000000 0.000000 1.570800
+                              children [
+                                Shape {
+                                  appearance PBRAppearance {
+                                    baseColor 0.500000 0.500000 0.500000
+                                    roughness 1.000000
+                                    metalness 0
+                                  }
+                                  geometry Cylinder {
+                                    radius 0.095
+                                    height 0.08
+                                  }
+                                }
+                              ]
+                            }
+                            Solid {
+                              children [
+                                Shape {
+                                  appearance PBRAppearance {
+                                    baseColor 0.500000 0.500000 0.500000
+                                    roughness 1.000000
+                                    metalness 0
+                                  }
+                                  geometry Box {
+                                     size 0.001000 0.001000 0.001000
+                                  }
+                                }
+                              ]
+                              name "appearance"
+                              physics Physics {
+                                density -1
+                                mass 0.010000
+                                centerOfMass [ 0.000000 0.000000 0.000000 ]
+                                inertiaMatrix [
+                                  1.000000e-04 1.000000e-04 1.000000e-04
+                                  0.000000e+00 0.000000e+00 0.000000e+00
+                                ]
+                              }
+                            }
+                          ]
+                          name "solid_1"
+                          boundingObject Pose {
+                            rotation 1.000000 0.000000 0.000000 1.570800
+                            children [
+                              Cylinder {
+                                radius 0.095
+                                height 0.08
+                              }
+                            ]
+                          }
+                          physics Physics {
+                            density -1
+                            mass 0.500000
+                            centerOfMass [ 0.000000 0.000000 0.000000 ]
+                            inertiaMatrix [
+                              1.000000e-03 1.000000e-03 1.000000e-03
+                              0.000000e+00 0.000000e+00 0.000000e+00
+                            ]
+                          }
+                        }
+                      }
                     ]
-                    name "appearance_10"
+                    name "solid_0"
                     physics Physics {
                       density -1
                       mass 0.010000
@@ -419,93 +199,64 @@ PROTO RoboCayote [
                       ]
                     }
                   }
-                ]
-                name "solid_9"
-                boundingObject Cylinder {
-                  radius 0.06
-                  height 0.05
-                }
-                physics Physics {
-                  density -1
-                  mass 0.500000
-                  centerOfMass [ 0.000000 0.000000 0.000000 ]
-                  inertiaMatrix [
-                    1.000000e-03 1.000000e-03 1.000000e-03
-                    0.000000e+00 0.000000e+00 0.000000e+00
-                  ]
-                }
-              }
-            }
-          ]
-          name "solid_8"
-          physics Physics {
-            density -1
-            mass 0.010000
-            centerOfMass [ 0.000000 0.000000 0.000000 ]
-            inertiaMatrix [
-              1.000000e-04 1.000000e-04 1.000000e-04
-              0.000000e+00 0.000000e+00 0.000000e+00
-            ]
-          }
-        }
-      }
-      SliderJoint {
-        jointParameters JointParameters {
-          axis 0.000000 1.000000 0.000000
-        }
-        device [
-          LinearMotor {
-            name "sliderjoint_11"
-            maxVelocity 10.0
-            minPosition -0.1
-            maxPosition 0.1
-            maxForce 10.0
-          }
-          PositionSensor {
-            name "sliderjoint_11_sensor"
-          }
-        ]
-        endPoint Solid {
-          translation -0.310000 0.020000 0.280000
-          children [
-            Shape {
-              appearance PBRAppearance {
-                baseColor 0.500000 0.500000 0.500000
-                roughness 1.000000
-                metalness 0
-              }
-              geometry Box {
-                 size 0.001000 0.001000 0.001000
-              }
-            }
-            HingeJoint {
-              jointParameters HingeJointParameters {
-                axis 0.000000 0.000000 1.000000
-              }
-              device [
-                RotationalMotor {
-                  name "wheel_motor_rl"
-                  maxVelocity 10.0
-                  maxTorque 20.0
-                }
-                PositionSensor {
-                  name "wheel_motor_rl_sensor"
                 }
               ]
-              endPoint Solid {
-                children [
-                  Shape {
-                    appearance PBRAppearance {
-                      baseColor 0.500000 0.500000 0.500000
-                      roughness 1.000000
-                      metalness 0
-                    }
-                    geometry Cylinder {
-                      radius 0.06
-                      height 0.05
-                    }
+              name "solid"
+              physics Physics {
+                density -1
+                mass 0.010000
+                centerOfMass [ 0.000000 0.000000 0.000000 ]
+                inertiaMatrix [
+                  1.000000e-04 1.000000e-04 1.000000e-04
+                  0.000000e+00 0.000000e+00 0.000000e+00
+                ]
+              }
+            }
+          }
+          SliderJoint {
+            jointParameters JointParameters {
+              axis 0.000000 0.000000 1.000000
+            }
+            device [
+              LinearMotor {
+                name "sliderjoint_2"
+                maxVelocity 10.0
+                minPosition -0.1
+                maxPosition 0.1
+                maxForce 10.0
+              }
+              PositionSensor {
+                name "sliderjoint_2_sensor"
+              }
+            ]
+            endPoint Solid {
+              translation 0.310000 0.170000 -0.165000
+              children [
+                Shape {
+                  appearance PBRAppearance {
+                    baseColor 0.500000 0.500000 0.500000
+                    roughness 1.000000
+                    metalness 0
                   }
-                  Solid {
+                  geometry Box {
+                     size 0.001000 0.001000 0.001000
+                  }
+                }
+                HingeJoint {
+                  jointParameters HingeJointParameters {
+                    axis 0.000000 0.000000 1.000000
+                  }
+                  device [
+                    RotationalMotor {
+                      name "steer_motor_fl"
+                      maxVelocity 10.0
+                      maxTorque 5.0
+                    }
+                    PositionSensor {
+                      name "steer_motor_fl_sensor"
+                    }
+                  ]
+                  endPoint Solid {
                     children [
                       Shape {
                         appearance PBRAppearance {
@@ -517,8 +268,86 @@ PROTO RoboCayote [
                            size 0.001000 0.001000 0.001000
                         }
                       }
+                      HingeJoint {
+                        jointParameters HingeJointParameters {
+                          axis 0.000000 1.000000 0.000000
+                        }
+                        device [
+                          RotationalMotor {
+                            name "wheel_motor_fl"
+                            maxVelocity 10.0
+                            maxTorque 20.0
+                          }
+                          PositionSensor {
+                            name "wheel_motor_fl_sensor"
+                          }
+                        ]
+                        endPoint Solid {
+                          children [
+                            Pose {
+                              rotation 1.000000 0.000000 0.000000 1.570800
+                              children [
+                                Shape {
+                                  appearance PBRAppearance {
+                                    baseColor 0.500000 0.500000 0.500000
+                                    roughness 1.000000
+                                    metalness 0
+                                  }
+                                  geometry Cylinder {
+                                    radius 0.095
+                                    height 0.08
+                                  }
+                                }
+                              ]
+                            }
+                            Solid {
+                              children [
+                                Shape {
+                                  appearance PBRAppearance {
+                                    baseColor 0.500000 0.500000 0.500000
+                                    roughness 1.000000
+                                    metalness 0
+                                  }
+                                  geometry Box {
+                                     size 0.001000 0.001000 0.001000
+                                  }
+                                }
+                              ]
+                              name "appearance_6"
+                              physics Physics {
+                                density -1
+                                mass 0.010000
+                                centerOfMass [ 0.000000 0.000000 0.000000 ]
+                                inertiaMatrix [
+                                  1.000000e-04 1.000000e-04 1.000000e-04
+                                  0.000000e+00 0.000000e+00 0.000000e+00
+                                ]
+                              }
+                            }
+                          ]
+                          name "solid_5"
+                          boundingObject Pose {
+                            rotation 1.000000 0.000000 0.000000 1.570800
+                            children [
+                              Cylinder {
+                                radius 0.095
+                                height 0.08
+                              }
+                            ]
+                          }
+                          physics Physics {
+                            density -1
+                            mass 0.500000
+                            centerOfMass [ 0.000000 0.000000 0.000000 ]
+                            inertiaMatrix [
+                              1.000000e-03 1.000000e-03 1.000000e-03
+                              0.000000e+00 0.000000e+00 0.000000e+00
+                            ]
+                          }
+                        }
+                      }
                     ]
-                    name "appearance_14"
+                    name "solid_4"
                     physics Physics {
                       density -1
                       mass 0.010000
@@ -529,308 +358,521 @@ PROTO RoboCayote [
                       ]
                     }
                   }
+                }
+              ]
+              name "solid_3"
+              physics Physics {
+                density -1
+                mass 0.010000
+                centerOfMass [ 0.000000 0.000000 0.000000 ]
+                inertiaMatrix [
+                  1.000000e-04 1.000000e-04 1.000000e-04
+                  0.000000e+00 0.000000e+00 0.000000e+00
                 ]
-                name "solid_13"
-                boundingObject Cylinder {
-                  radius 0.06
-                  height 0.05
-                }
-                physics Physics {
-                  density -1
-                  mass 0.500000
-                  centerOfMass [ 0.000000 0.000000 0.000000 ]
-                  inertiaMatrix [
-                    1.000000e-03 1.000000e-03 1.000000e-03
-                    0.000000e+00 0.000000e+00 0.000000e+00
-                  ]
-                }
               }
             }
-          ]
-          name "solid_12"
-          physics Physics {
-            density -1
-            mass 0.010000
-            centerOfMass [ 0.000000 0.000000 0.000000 ]
-            inertiaMatrix [
-              1.000000e-04 1.000000e-04 1.000000e-04
-              0.000000e+00 0.000000e+00 0.000000e+00
+          }
+          SliderJoint {
+            jointParameters JointParameters {
+              axis 0.000000 0.000000 1.000000
+            }
+            device [
+              LinearMotor {
+                name "sliderjoint_7"
+                maxVelocity 10.0
+                minPosition -0.1
+                maxPosition 0.1
+                maxForce 10.0
+              }
+              PositionSensor {
+                name "sliderjoint_7_sensor"
+              }
             ]
-          }
-        }
-      }
-      Solid {
-        translation 0.380000 0.050000 0.000000
-        children [
-          Shape {
-            appearance PBRAppearance {
-              baseColor 0.500000 0.500000 0.500000
-              roughness 1.000000
-              metalness 0
-            }
-            geometry Box {
-               size 0.001000 0.001000 0.001000
-            }
-          }
-        ]
-        name "ultrasonic_front_link"
-        physics Physics {
-          density -1
-          mass 0.010000
-          centerOfMass [ 0.000000 0.000000 0.000000 ]
-          inertiaMatrix [
-            1.000000e-04 1.000000e-04 1.000000e-04
-            0.000000e+00 0.000000e+00 0.000000e+00
-          ]
-        }
-      }
-      Solid {
-        translation 0.330000 0.050000 0.180000
-        children [
-          Shape {
-            appearance PBRAppearance {
-              baseColor 0.500000 0.500000 0.500000
-              roughness 1.000000
-              metalness 0
-            }
-            geometry Box {
-               size 0.001000 0.001000 0.001000
-            }
-          }
-        ]
-        name "ultrasonic_front_left_link"
-        physics Physics {
-          density -1
-          mass 0.010000
-          centerOfMass [ 0.000000 0.000000 0.000000 ]
-          inertiaMatrix [
-            1.000000e-04 1.000000e-04 1.000000e-04
-            0.000000e+00 0.000000e+00 0.000000e+00
-          ]
-        }
-      }
-      Solid {
-        translation 0.330000 0.050000 -0.180000
-        children [
-          Shape {
-            appearance PBRAppearance {
-              baseColor 0.500000 0.500000 0.500000
-              roughness 1.000000
-              metalness 0
-            }
-            geometry Box {
-               size 0.001000 0.001000 0.001000
-            }
-          }
-        ]
-        name "ultrasonic_front_right_link"
-        physics Physics {
-          density -1
-          mass 0.010000
-          centerOfMass [ 0.000000 0.000000 0.000000 ]
-          inertiaMatrix [
-            1.000000e-04 1.000000e-04 1.000000e-04
-            0.000000e+00 0.000000e+00 0.000000e+00
-          ]
-        }
-      }
-      Solid {
-        translation -0.380000 0.050000 0.000000
-        rotation 0.000000 1.000000 0.000000 3.141590
-        children [
-          Shape {
-            appearance PBRAppearance {
-              baseColor 0.500000 0.500000 0.500000
-              roughness 1.000000
-              metalness 0
-            }
-            geometry Box {
-               size 0.001000 0.001000 0.001000
-            }
-          }
-        ]
-        name "ultrasonic_rear_link"
-        physics Physics {
-          density -1
-          mass 0.010000
-          centerOfMass [ 0.000000 0.000000 0.000000 ]
-          inertiaMatrix [
-            1.000000e-04 1.000000e-04 1.000000e-04
-            0.000000e+00 0.000000e+00 0.000000e+00
-          ]
-        }
-      }
-      Solid {
-        translation -0.330000 0.050000 0.180000
-        rotation 0.000000 1.000000 0.000000 3.141590
-        children [
-          Shape {
-            appearance PBRAppearance {
-              baseColor 0.500000 0.500000 0.500000
-              roughness 1.000000
-              metalness 0
-            }
-            geometry Box {
-               size 0.001000 0.001000 0.001000
+            endPoint Solid {
+              translation -0.310000 -0.170000 -0.165000
+              children [
+                Shape {
+                  appearance PBRAppearance {
+                    baseColor 0.500000 0.500000 0.500000
+                    roughness 1.000000
+                    metalness 0
+                  }
+                  geometry Box {
+                     size 0.001000 0.001000 0.001000
+                  }
+                }
+                HingeJoint {
+                  jointParameters HingeJointParameters {
+                    axis 0.000000 1.000000 0.000000
+                  }
+                  device [
+                    RotationalMotor {
+                      name "wheel_motor_rr"
+                      maxVelocity 10.0
+                      maxTorque 20.0
+                    }
+                    PositionSensor {
+                      name "wheel_motor_rr_sensor"
+                    }
+                  ]
+                  endPoint Solid {
+                    children [
+                      Pose {
+                        rotation 1.000000 0.000000 0.000000 1.570800
+                        children [
+                          Shape {
+                            appearance PBRAppearance {
+                              baseColor 0.500000 0.500000 0.500000
+                              roughness 1.000000
+                              metalness 0
+                            }
+                            geometry Cylinder {
+                              radius 0.095
+                              height 0.08
+                            }
+                          }
+                        ]
+                      }
+                      Solid {
+                        children [
+                          Shape {
+                            appearance PBRAppearance {
+                              baseColor 0.500000 0.500000 0.500000
+                              roughness 1.000000
+                              metalness 0
+                            }
+                            geometry Box {
+                               size 0.001000 0.001000 0.001000
+                            }
+                          }
+                        ]
+                        name "appearance_10"
+                        physics Physics {
+                          density -1
+                          mass 0.010000
+                          centerOfMass [ 0.000000 0.000000 0.000000 ]
+                          inertiaMatrix [
+                            1.000000e-04 1.000000e-04 1.000000e-04
+                            0.000000e+00 0.000000e+00 0.000000e+00
+                          ]
+                        }
+                      }
+                    ]
+                    name "solid_9"
+                    boundingObject Pose {
+                      rotation 1.000000 0.000000 0.000000 1.570800
+                      children [
+                        Cylinder {
+                          radius 0.095
+                          height 0.08
+                        }
+                      ]
+                    }
+                    physics Physics {
+                      density -1
+                      mass 0.500000
+                      centerOfMass [ 0.000000 0.000000 0.000000 ]
+                      inertiaMatrix [
+                        1.000000e-03 1.000000e-03 1.000000e-03
+                        0.000000e+00 0.000000e+00 0.000000e+00
+                      ]
+                    }
+                  }
+                }
+              ]
+              name "solid_8"
+              physics Physics {
+                density -1
+                mass 0.010000
+                centerOfMass [ 0.000000 0.000000 0.000000 ]
+                inertiaMatrix [
+                  1.000000e-04 1.000000e-04 1.000000e-04
+                  0.000000e+00 0.000000e+00 0.000000e+00
+                ]
+              }
             }
           }
-        ]
-        name "ultrasonic_rear_left_link"
-        physics Physics {
-          density -1
-          mass 0.010000
-          centerOfMass [ 0.000000 0.000000 0.000000 ]
-          inertiaMatrix [
-            1.000000e-04 1.000000e-04 1.000000e-04
-            0.000000e+00 0.000000e+00 0.000000e+00
-          ]
-        }
-      }
-      Solid {
-        translation -0.330000 0.050000 -0.180000
-        rotation 0.000000 1.000000 0.000000 3.141590
-        children [
-          Shape {
-            appearance PBRAppearance {
-              baseColor 0.500000 0.500000 0.500000
-              roughness 1.000000
-              metalness 0
+          SliderJoint {
+            jointParameters JointParameters {
+              axis 0.000000 0.000000 1.000000
             }
-            geometry Box {
-               size 0.001000 0.001000 0.001000
-            }
-          }
-        ]
-        name "ultrasonic_rear_right_link"
-        physics Physics {
-          density -1
-          mass 0.010000
-          centerOfMass [ 0.000000 0.000000 0.000000 ]
-          inertiaMatrix [
-            1.000000e-04 1.000000e-04 1.000000e-04
-            0.000000e+00 0.000000e+00 0.000000e+00
-          ]
-        }
-      }
-      Solid {
-        translation 0.200000 0.050000 0.220000
-        rotation 0.000000 -1.000000 0.000000 1.570800
-        children [
-          Shape {
-            appearance PBRAppearance {
-              baseColor 0.500000 0.500000 0.500000
-              roughness 1.000000
-              metalness 0
-            }
-            geometry Box {
-               size 0.001000 0.001000 0.001000
-            }
-          }
-        ]
-        name "ultrasonic_side_left_front_link"
-        physics Physics {
-          density -1
-          mass 0.010000
-          centerOfMass [ 0.000000 0.000000 0.000000 ]
-          inertiaMatrix [
-            1.000000e-04 1.000000e-04 1.000000e-04
-            0.000000e+00 0.000000e+00 0.000000e+00
-          ]
-        }
-      }
-      Solid {
-        translation -0.200000 0.050000 0.220000
-        rotation 0.000000 -1.000000 0.000000 1.570800
-        children [
-          Shape {
-            appearance PBRAppearance {
-              baseColor 0.500000 0.500000 0.500000
-              roughness 1.000000
-              metalness 0
-            }
-            geometry Box {
-               size 0.001000 0.001000 0.001000
-            }
-          }
-        ]
-        name "ultrasonic_side_left_back_link"
-        physics Physics {
-          density -1
-          mass 0.010000
-          centerOfMass [ 0.000000 0.000000 0.000000 ]
-          inertiaMatrix [
-            1.000000e-04 1.000000e-04 1.000000e-04
-            0.000000e+00 0.000000e+00 0.000000e+00
-          ]
-        }
-      }
-      Solid {
-        translation 0.200000 0.050000 -0.220000
-        rotation 0.000000 1.000000 0.000000 1.570800
-        children [
-          Shape {
-            appearance PBRAppearance {
-              baseColor 0.500000 0.500000 0.500000
-              roughness 1.000000
-              metalness 0
-            }
-            geometry Box {
-               size 0.001000 0.001000 0.001000
-            }
-          }
-        ]
-        name "ultrasonic_side_right_front_link"
-        physics Physics {
-          density -1
-          mass 0.010000
-          centerOfMass [ 0.000000 0.000000 0.000000 ]
-          inertiaMatrix [
-            1.000000e-04 1.000000e-04 1.000000e-04
-            0.000000e+00 0.000000e+00 0.000000e+00
-          ]
-        }
-      }
-      Solid {
-        translation -0.200000 0.050000 -0.220000
-        rotation 0.000000 1.000000 0.000000 1.570800
-        children [
-          Shape {
-            appearance PBRAppearance {
-              baseColor 0.500000 0.500000 0.500000
-              roughness 1.000000
-              metalness 0
-            }
-            geometry Box {
-               size 0.001000 0.001000 0.001000
-            }
-          }
-        ]
-        name "ultrasonic_side_right_back_link"
-        physics Physics {
-          density -1
-          mass 0.010000
-          centerOfMass [ 0.000000 0.000000 0.000000 ]
-          inertiaMatrix [
-            1.000000e-04 1.000000e-04 1.000000e-04
-            0.000000e+00 0.000000e+00 0.000000e+00
-          ]
-        }
-      }
-      Solid {
-        translation 0.000000 0.280000 0.000000
-        children [
-          Shape {
-            appearance PBRAppearance {
-              baseColor 0.500000 0.500000 0.500000
-              roughness 1.000000
-              metalness 0
-            }
-            geometry Box {
-               size 0.001000 0.001000 0.001000
+            device [
+              LinearMotor {
+                name "sliderjoint_11"
+                maxVelocity 10.0
+                minPosition -0.1
+                maxPosition 0.1
+                maxForce 10.0
+              }
+              PositionSensor {
+                name "sliderjoint_11_sensor"
+              }
+            ]
+            endPoint Solid {
+              translation -0.310000 0.170000 -0.165000
+              children [
+                Shape {
+                  appearance PBRAppearance {
+                    baseColor 0.500000 0.500000 0.500000
+                    roughness 1.000000
+                    metalness 0
+                  }
+                  geometry Box {
+                     size 0.001000 0.001000 0.001000
+                  }
+                }
+                HingeJoint {
+                  jointParameters HingeJointParameters {
+                    axis 0.000000 1.000000 0.000000
+                  }
+                  device [
+                    RotationalMotor {
+                      name "wheel_motor_rl"
+                      maxVelocity 10.0
+                      maxTorque 20.0
+                    }
+                    PositionSensor {
+                      name "wheel_motor_rl_sensor"
+                    }
+                  ]
+                  endPoint Solid {
+                    children [
+                      Pose {
+                        rotation 1.000000 0.000000 0.000000 1.570800
+                        children [
+                          Shape {
+                            appearance PBRAppearance {
+                              baseColor 0.500000 0.500000 0.500000
+                              roughness 1.000000
+                              metalness 0
+                            }
+                            geometry Cylinder {
+                              radius 0.095
+                              height 0.08
+                            }
+                          }
+                        ]
+                      }
+                      Solid {
+                        children [
+                          Shape {
+                            appearance PBRAppearance {
+                              baseColor 0.500000 0.500000 0.500000
+                              roughness 1.000000
+                              metalness 0
+                            }
+                            geometry Box {
+                               size 0.001000 0.001000 0.001000
+                            }
+                          }
+                        ]
+                        name "appearance_14"
+                        physics Physics {
+                          density -1
+                          mass 0.010000
+                          centerOfMass [ 0.000000 0.000000 0.000000 ]
+                          inertiaMatrix [
+                            1.000000e-04 1.000000e-04 1.000000e-04
+                            0.000000e+00 0.000000e+00 0.000000e+00
+                          ]
+                        }
+                      }
+                    ]
+                    name "solid_13"
+                    boundingObject Pose {
+                      rotation 1.000000 0.000000 0.000000 1.570800
+                      children [
+                        Cylinder {
+                          radius 0.095
+                          height 0.08
+                        }
+                      ]
+                    }
+                    physics Physics {
+                      density -1
+                      mass 0.500000
+                      centerOfMass [ 0.000000 0.000000 0.000000 ]
+                      inertiaMatrix [
+                        1.000000e-03 1.000000e-03 1.000000e-03
+                        0.000000e+00 0.000000e+00 0.000000e+00
+                      ]
+                    }
+                  }
+                }
+              ]
+              name "solid_12"
+              physics Physics {
+                density -1
+                mass 0.010000
+                centerOfMass [ 0.000000 0.000000 0.000000 ]
+                inertiaMatrix [
+                  1.000000e-04 1.000000e-04 1.000000e-04
+                  0.000000e+00 0.000000e+00 0.000000e+00
+                ]
+              }
             }
           }
           Solid {
-            translation 0.000000 0.025000 0.000000
+            translation 0.215000 0.000000 0.030000
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.500000 0.500000 0.500000
+                  roughness 1.000000
+                  metalness 0
+                }
+                geometry Box {
+                   size 0.001000 0.001000 0.001000
+                }
+              }
+            ]
+            name "ultrasonic_front_link"
+            physics Physics {
+              density -1
+              mass 0.010000
+              centerOfMass [ 0.000000 0.000000 0.000000 ]
+              inertiaMatrix [
+                1.000000e-04 1.000000e-04 1.000000e-04
+                0.000000e+00 0.000000e+00 0.000000e+00
+              ]
+            }
+          }
+          Solid {
+            translation 0.205000 0.120000 0.030000
+            rotation 0.000000 0.000000 1.000000 0.785000
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.500000 0.500000 0.500000
+                  roughness 1.000000
+                  metalness 0
+                }
+                geometry Box {
+                   size 0.001000 0.001000 0.001000
+                }
+              }
+            ]
+            name "ultrasonic_front_left_link"
+            physics Physics {
+              density -1
+              mass 0.010000
+              centerOfMass [ 0.000000 0.000000 0.000000 ]
+              inertiaMatrix [
+                1.000000e-04 1.000000e-04 1.000000e-04
+                0.000000e+00 0.000000e+00 0.000000e+00
+              ]
+            }
+          }
+          Solid {
+            translation 0.205000 -0.120000 0.030000
+            rotation 0.000000 0.000000 -1.000000 0.785000
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.500000 0.500000 0.500000
+                  roughness 1.000000
+                  metalness 0
+                }
+                geometry Box {
+                   size 0.001000 0.001000 0.001000
+                }
+              }
+            ]
+            name "ultrasonic_front_right_link"
+            physics Physics {
+              density -1
+              mass 0.010000
+              centerOfMass [ 0.000000 0.000000 0.000000 ]
+              inertiaMatrix [
+                1.000000e-04 1.000000e-04 1.000000e-04
+                0.000000e+00 0.000000e+00 0.000000e+00
+              ]
+            }
+          }
+          Solid {
+            translation -0.215000 0.000000 0.030000
+            rotation 0.000000 0.000000 1.000000 3.141590
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.500000 0.500000 0.500000
+                  roughness 1.000000
+                  metalness 0
+                }
+                geometry Box {
+                   size 0.001000 0.001000 0.001000
+                }
+              }
+            ]
+            name "ultrasonic_rear_link"
+            physics Physics {
+              density -1
+              mass 0.010000
+              centerOfMass [ 0.000000 0.000000 0.000000 ]
+              inertiaMatrix [
+                1.000000e-04 1.000000e-04 1.000000e-04
+                0.000000e+00 0.000000e+00 0.000000e+00
+              ]
+            }
+          }
+          Solid {
+            translation -0.205000 0.120000 0.030000
+            rotation 0.000000 0.000000 1.000000 2.356590
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.500000 0.500000 0.500000
+                  roughness 1.000000
+                  metalness 0
+                }
+                geometry Box {
+                   size 0.001000 0.001000 0.001000
+                }
+              }
+            ]
+            name "ultrasonic_rear_left_link"
+            physics Physics {
+              density -1
+              mass 0.010000
+              centerOfMass [ 0.000000 0.000000 0.000000 ]
+              inertiaMatrix [
+                1.000000e-04 1.000000e-04 1.000000e-04
+                0.000000e+00 0.000000e+00 0.000000e+00
+              ]
+            }
+          }
+          Solid {
+            translation -0.205000 -0.120000 0.030000
+            rotation -0.000000 0.000000 1.000000 3.926590
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.500000 0.500000 0.500000
+                  roughness 1.000000
+                  metalness 0
+                }
+                geometry Box {
+                   size 0.001000 0.001000 0.001000
+                }
+              }
+            ]
+            name "ultrasonic_rear_right_link"
+            physics Physics {
+              density -1
+              mass 0.010000
+              centerOfMass [ 0.000000 0.000000 0.000000 ]
+              inertiaMatrix [
+                1.000000e-04 1.000000e-04 1.000000e-04
+                0.000000e+00 0.000000e+00 0.000000e+00
+              ]
+            }
+          }
+          Solid {
+            translation 0.090000 0.140000 0.030000
+            rotation 0.000000 0.000000 1.000000 1.570800
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.500000 0.500000 0.500000
+                  roughness 1.000000
+                  metalness 0
+                }
+                geometry Box {
+                   size 0.001000 0.001000 0.001000
+                }
+              }
+            ]
+            name "ultrasonic_side_left_front_link"
+            physics Physics {
+              density -1
+              mass 0.010000
+              centerOfMass [ 0.000000 0.000000 0.000000 ]
+              inertiaMatrix [
+                1.000000e-04 1.000000e-04 1.000000e-04
+                0.000000e+00 0.000000e+00 0.000000e+00
+              ]
+            }
+          }
+          Solid {
+            translation -0.120000 0.140000 0.030000
+            rotation 0.000000 0.000000 1.000000 1.570800
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.500000 0.500000 0.500000
+                  roughness 1.000000
+                  metalness 0
+                }
+                geometry Box {
+                   size 0.001000 0.001000 0.001000
+                }
+              }
+            ]
+            name "ultrasonic_side_left_back_link"
+            physics Physics {
+              density -1
+              mass 0.010000
+              centerOfMass [ 0.000000 0.000000 0.000000 ]
+              inertiaMatrix [
+                1.000000e-04 1.000000e-04 1.000000e-04
+                0.000000e+00 0.000000e+00 0.000000e+00
+              ]
+            }
+          }
+          Solid {
+            translation 0.120000 -0.140000 0.030000
+            rotation 0.000000 0.000000 -1.000000 1.570800
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.500000 0.500000 0.500000
+                  roughness 1.000000
+                  metalness 0
+                }
+                geometry Box {
+                   size 0.001000 0.001000 0.001000
+                }
+              }
+            ]
+            name "ultrasonic_side_right_front_link"
+            physics Physics {
+              density -1
+              mass 0.010000
+              centerOfMass [ 0.000000 0.000000 0.000000 ]
+              inertiaMatrix [
+                1.000000e-04 1.000000e-04 1.000000e-04
+                0.000000e+00 0.000000e+00 0.000000e+00
+              ]
+            }
+          }
+          Solid {
+            translation -0.090000 -0.140000 0.030000
+            rotation 0.000000 0.000000 -1.000000 1.570800
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.500000 0.500000 0.500000
+                  roughness 1.000000
+                  metalness 0
+                }
+                geometry Box {
+                   size 0.001000 0.001000 0.001000
+                }
+              }
+            ]
+            name "ultrasonic_side_right_back_link"
+            physics Physics {
+              density -1
+              mass 0.010000
+              centerOfMass [ 0.000000 0.000000 0.000000 ]
+              inertiaMatrix [
+                1.000000e-04 1.000000e-04 1.000000e-04
+                0.000000e+00 0.000000e+00 0.000000e+00
+              ]
+            }
+          }
+          Solid {
+            translation 0.000000 0.000000 0.290000
             children [
               Shape {
                 appearance PBRAppearance {
@@ -843,7 +885,7 @@ PROTO RoboCayote [
                 }
               }
               Solid {
-                rotation -0.577350 0.577352 -0.577350 2.094399
+                translation 0.000000 0.025000 0.000000
                 children [
                   Shape {
                     appearance PBRAppearance {
@@ -855,8 +897,83 @@ PROTO RoboCayote [
                        size 0.001000 0.001000 0.001000
                     }
                   }
+                  Solid {
+                    rotation -0.577350 0.577352 -0.577350 2.094399
+                    children [
+                      Shape {
+                        appearance PBRAppearance {
+                          baseColor 0.500000 0.500000 0.500000
+                          roughness 1.000000
+                          metalness 0
+                        }
+                        geometry Box {
+                           size 0.001000 0.001000 0.001000
+                        }
+                      }
+                    ]
+                    name "camera_left_optical_frame"
+                    physics Physics {
+                      density -1
+                      mass 0.010000
+                      centerOfMass [ 0.000000 0.000000 0.000000 ]
+                      inertiaMatrix [
+                        1.000000e-04 1.000000e-04 1.000000e-04
+                        0.000000e+00 0.000000e+00 0.000000e+00
+                      ]
+                    }
+                  }
                 ]
-                name "camera_left_optical_frame"
+                name "camera_left_frame"
+                physics Physics {
+                  density -1
+                  mass 0.010000
+                  centerOfMass [ 0.000000 0.000000 0.000000 ]
+                  inertiaMatrix [
+                    1.000000e-04 1.000000e-04 1.000000e-04
+                    0.000000e+00 0.000000e+00 0.000000e+00
+                  ]
+                }
+              }
+              Solid {
+                translation 0.000000 -0.025000 0.000000
+                children [
+                  Shape {
+                    appearance PBRAppearance {
+                      baseColor 0.500000 0.500000 0.500000
+                      roughness 1.000000
+                      metalness 0
+                    }
+                    geometry Box {
+                       size 0.001000 0.001000 0.001000
+                    }
+                  }
+                  Solid {
+                    rotation -0.577350 0.577352 -0.577350 2.094399
+                    children [
+                      Shape {
+                        appearance PBRAppearance {
+                          baseColor 0.500000 0.500000 0.500000
+                          roughness 1.000000
+                          metalness 0
+                        }
+                        geometry Box {
+                           size 0.001000 0.001000 0.001000
+                        }
+                      }
+                    ]
+                    name "camera_right_optical_frame"
+                    physics Physics {
+                      density -1
+                      mass 0.010000
+                      centerOfMass [ 0.000000 0.000000 0.000000 ]
+                      inertiaMatrix [
+                        1.000000e-04 1.000000e-04 1.000000e-04
+                        0.000000e+00 0.000000e+00 0.000000e+00
+                      ]
+                    }
+                  }
+                ]
+                name "camera_right_frame"
                 physics Physics {
                   density -1
                   mass 0.010000
@@ -868,7 +985,7 @@ PROTO RoboCayote [
                 }
               }
             ]
-            name "camera_left_frame"
+            name "camera_link"
             physics Physics {
               density -1
               mass 0.010000
@@ -880,7 +997,6 @@ PROTO RoboCayote [
             }
           }
           Solid {
-            translation 0.000000 -0.025000 0.000000
             children [
               Shape {
                 appearance PBRAppearance {
@@ -892,33 +1008,80 @@ PROTO RoboCayote [
                    size 0.001000 0.001000 0.001000
                 }
               }
-              Solid {
-                rotation -0.577350 0.577352 -0.577350 2.094399
-                children [
-                  Shape {
-                    appearance PBRAppearance {
-                      baseColor 0.500000 0.500000 0.500000
-                      roughness 1.000000
-                      metalness 0
-                    }
-                    geometry Box {
-                       size 0.001000 0.001000 0.001000
-                    }
-                  }
-                ]
-                name "camera_right_optical_frame"
-                physics Physics {
-                  density -1
-                  mass 0.010000
-                  centerOfMass [ 0.000000 0.000000 0.000000 ]
-                  inertiaMatrix [
-                    1.000000e-04 1.000000e-04 1.000000e-04
-                    0.000000e+00 0.000000e+00 0.000000e+00
-                  ]
+            ]
+            name "imu"
+            physics Physics {
+              density -1
+              mass 0.010000
+              centerOfMass [ 0.000000 0.000000 0.000000 ]
+              inertiaMatrix [
+                1.000000e-04 1.000000e-04 1.000000e-04
+                0.000000e+00 0.000000e+00 0.000000e+00
+              ]
+            }
+          }
+          Solid {
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.500000 0.500000 0.500000
+                  roughness 1.000000
+                  metalness 0
+                }
+                geometry Box {
+                   size 0.001000 0.001000 0.001000
                 }
               }
             ]
-            name "camera_right_frame"
+            name "gps"
+            physics Physics {
+              density -1
+              mass 0.010000
+              centerOfMass [ 0.000000 0.000000 0.000000 ]
+              inertiaMatrix [
+                1.000000e-04 1.000000e-04 1.000000e-04
+                0.000000e+00 0.000000e+00 0.000000e+00
+              ]
+            }
+          }
+          Solid {
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.500000 0.500000 0.500000
+                  roughness 1.000000
+                  metalness 0
+                }
+                geometry Box {
+                   size 0.001000 0.001000 0.001000
+                }
+              }
+            ]
+            name "compass"
+            physics Physics {
+              density -1
+              mass 0.010000
+              centerOfMass [ 0.000000 0.000000 0.000000 ]
+              inertiaMatrix [
+                1.000000e-04 1.000000e-04 1.000000e-04
+                0.000000e+00 0.000000e+00 0.000000e+00
+              ]
+            }
+          }
+          Solid {
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.500000 0.500000 0.500000
+                  roughness 1.000000
+                  metalness 0
+                }
+                geometry Box {
+                   size 0.001000 0.001000 0.001000
+                }
+              }
+            ]
+            name "appearance_15"
             physics Physics {
               density -1
               mass 0.010000
@@ -930,129 +1093,33 @@ PROTO RoboCayote [
             }
           }
         ]
-        name "camera_link"
-        physics Physics {
-          density -1
-          mass 0.010000
-          centerOfMass [ 0.000000 0.000000 0.000000 ]
-          inertiaMatrix [
-            1.000000e-04 1.000000e-04 1.000000e-04
-            0.000000e+00 0.000000e+00 0.000000e+00
+        name "base_link"
+        boundingObject Pose {
+          translation 0.000000 0.000000 0.030000
+          children [
+            Box {
+               size 0.450000 0.310000 0.060000
+            }
           ]
         }
-      }
-      Solid {
-        children [
-          Shape {
-            appearance PBRAppearance {
-              baseColor 0.500000 0.500000 0.500000
-              roughness 1.000000
-              metalness 0
-            }
-            geometry Box {
-               size 0.001000 0.001000 0.001000
-            }
-          }
-        ]
-        name "imu"
         physics Physics {
           density -1
-          mass 0.010000
+          mass 5.000000
           centerOfMass [ 0.000000 0.000000 0.000000 ]
           inertiaMatrix [
-            1.000000e-04 1.000000e-04 1.000000e-04
-            0.000000e+00 0.000000e+00 0.000000e+00
-          ]
-        }
-      }
-      Solid {
-        children [
-          Shape {
-            appearance PBRAppearance {
-              baseColor 0.500000 0.500000 0.500000
-              roughness 1.000000
-              metalness 0
-            }
-            geometry Box {
-               size 0.001000 0.001000 0.001000
-            }
-          }
-        ]
-        name "gps"
-        physics Physics {
-          density -1
-          mass 0.010000
-          centerOfMass [ 0.000000 0.000000 0.000000 ]
-          inertiaMatrix [
-            1.000000e-04 1.000000e-04 1.000000e-04
-            0.000000e+00 0.000000e+00 0.000000e+00
-          ]
-        }
-      }
-      Solid {
-        children [
-          Shape {
-            appearance PBRAppearance {
-              baseColor 0.500000 0.500000 0.500000
-              roughness 1.000000
-              metalness 0
-            }
-            geometry Box {
-               size 0.001000 0.001000 0.001000
-            }
-          }
-        ]
-        name "compass"
-        physics Physics {
-          density -1
-          mass 0.010000
-          centerOfMass [ 0.000000 0.000000 0.000000 ]
-          inertiaMatrix [
-            1.000000e-04 1.000000e-04 1.000000e-04
-            0.000000e+00 0.000000e+00 0.000000e+00
-          ]
-        }
-      }
-      Solid {
-        children [
-          Shape {
-            appearance PBRAppearance {
-              baseColor 0.500000 0.500000 0.500000
-              roughness 1.000000
-              metalness 0
-            }
-            geometry Box {
-               size 0.001000 0.001000 0.001000
-            }
-          }
-        ]
-        name "appearance_15"
-        physics Physics {
-          density -1
-          mass 0.010000
-          centerOfMass [ 0.000000 0.000000 0.000000 ]
-          inertiaMatrix [
-            1.000000e-04 1.000000e-04 1.000000e-04
+            1.000000e-01 1.000000e-01 1.000000e-01
             0.000000e+00 0.000000e+00 0.000000e+00
           ]
         }
       }
     ]
     name IS name
-    boundingObject Pose {
-      translation 0.000000 0.140000 0.000000
-      children [
-        Box {
-           size 0.840000 0.060000 0.435900
-        }
-      ]
-    }
     physics Physics {
       density -1
-      mass 5.000000
+      mass 0.010000
       centerOfMass [ 0.000000 0.000000 0.000000 ]
       inertiaMatrix [
-        1.000000e-01 1.000000e-01 1.000000e-01
+        1.000000e-04 1.000000e-04 1.000000e-04
         0.000000e+00 0.000000e+00 0.000000e+00
       ]
     }
