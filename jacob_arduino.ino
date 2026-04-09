@@ -23,66 +23,58 @@ void setup() {
   esc.attach(escPin, 1000, 2000);
   delay(1000);
 
-  for (int i = 0; i < 10; i++) { // Corrected to 10 sensors
+  for (int i = 0; i < 10; i++) { 
     pinMode(trigPins[i], OUTPUT);
     pinMode(echoPins[i], INPUT_PULLUP);
-    // For MB1010 in PW mode, pulling Trig high or leaving it low 
-    // changes ranging behavior. Usually, we leave it LOW to trigger manually.
     digitalWrite(trigPins[i], LOW);
   }
 }
 
 void loop() {
+  // 1. Report Environment to Jetson
   sendSensorData();
 
-  if (getDistanceMeters(0) <= 0.5) { 
-    emergencyStop();           // Call your controlled stop function
-    delay(5000);      // Wait for 5 seconds
+  // 2. Hardware-level Safety Override (Instant, Non-blocking)
+  if (getDistanceMeters(0) <= 0.45) { 
+    emergencyStop(); 
   }
 
+  // 3. Physical Kill Switch
   if (digitalRead(buttonPin) == LOW) {
     emergencyStop();
-
-    exit(0);
   }
 
+  // 4. Listen for Jetson Commands
   if (Serial.available() > 0) {
     char cmd = Serial.read();
     handleCommand(cmd);
   }
 }
 
-// Function to read sensors (Handles both HC-SR04 and MB1010)
+// Function to read sensors (Unchanged, works perfectly)
 float getDistanceMeters(int index) {
   int trig = trigPins[index];
   int echo = echoPins[index];
 
-  // 1. Ensure a clean start
   digitalWrite(trig, LOW);
   delayMicroseconds(5);
 
-  // 2. Trigger pulse (MB1010 needs 20us+)
   digitalWrite(trig, HIGH);
   delayMicroseconds(25); 
   digitalWrite(trig, LOW);
 
-  // 3. Measure pulse width (Timeout of 40ms)
   long duration = pulseIn(echo, HIGH, 40000); 
   if (duration == 0) return 9.99;
 
-  // LOGIC SPLIT:
   if (index == 0 || index == 1 || index == 2 || index >= 7) {
-    // MB1010 ADJUSTED: Based on your 11m reading for a 2m ceiling, 
-    // your sensor is likely using 58uS per cm (Standard for many MaxSonars).
-    // Formula: (Duration / 58.0) / 100.0 to get meters
     float meters = (duration / 5800.0);
     return meters;
   } else {
-    // HC-SR04: Standard Math
     return (duration * 0.034 / 2.0) / 100.0;
   }
 }
 
+// Function to send JSON to Jetson
 void sendSensorData() {
   static unsigned long lastUpdate = 0;
   if (millis() - lastUpdate > 100) { 
@@ -90,7 +82,7 @@ void sendSensorData() {
     
     for (int i = 0; i < 10; i++) {
       float distanceMeters = getDistanceMeters(i);
-      delay(30);
+      delay(20); // Slightly reduced delay to speed up 10-sensor sweep
       
       Serial.print("\"");
       Serial.print(labels[i]);
@@ -105,7 +97,8 @@ void sendSensorData() {
   }
 }
 
-// --- Rest of your movement logic ---
+// --- INSTANT MOVEMENT LOGIC ---
+// No more delays! The Jetson handles how long these run.
 void handleCommand(char cmd) {
   switch(cmd) {
     case 'd': drive(); break;
@@ -115,29 +108,21 @@ void handleCommand(char cmd) {
     case 'l': left(); break;
     case 'f': straight(); break;
     case 'v': reverse(); break;
-    case 'o': rstop(); break;
+    case 'o': stop(); break; // Combined with standard stop
     case 'b': backStraight(); break;
   }
 }
 
-void smartWait(unsigned long ms) {
-  unsigned long start = millis();
-  while (millis() - start < ms) {
-    if (digitalRead(buttonPin) == LOW) emergencyStop();
-    if (Serial.available() > 0 && Serial.peek() == 'e') {
-        Serial.read(); // clear the 'e'
-        emergencyStop();
-    }
-    sendSensorData(); 
-  }
-}
-
-void drive() { esc.writeMicroseconds(1400); smartWait(1000); esc.writeMicroseconds(1350); smartWait(1000); esc.writeMicroseconds(1300); }
-void stop() { esc.writeMicroseconds(1350); smartWait(1000); esc.writeMicroseconds(1400); smartWait(1000); esc.writeMicroseconds(1500); }
+// Assuming 1500 is neutral/stopped for ESC and ~1480 is straight for Steering
+void drive() { esc.writeMicroseconds(1400); }
+void stop() { esc.writeMicroseconds(1500); }
 void left() { motor.writeMicroseconds(2000); }
 void right() { motor.writeMicroseconds(1000); }
 void straight() { motor.writeMicroseconds(1480); }
-void emergencyStop() { esc.writeMicroseconds(1500); smartWait(5000); }
-void reverse() { esc.writeMicroseconds(1600); smartWait(1000); esc.writeMicroseconds(1650); smartWait(1000); esc.writeMicroseconds(1700); }
-void rstop() { esc.writeMicroseconds(1650); smartWait(1000); esc.writeMicroseconds(1600); smartWait(1000); esc.writeMicroseconds(1500); }
+void reverse() { esc.writeMicroseconds(1600); }
 void backStraight() { motor.writeMicroseconds(1510); }
+
+void emergencyStop() { 
+  esc.writeMicroseconds(1500); 
+  motor.writeMicroseconds(1480); 
+}
