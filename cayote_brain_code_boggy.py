@@ -55,7 +55,7 @@ class CayoteInferenceNode(Node):
             'side right front', 'side right back'
         ]
         # Initialize dictionary to hold readings
-        self.sonar_ranges = {topic: 10.0 for topic in self.sonar_topics}
+        self.sonar_ranges = {topic: 10.0 for topic in self.sonar_topics} # Um... are these 10m range? I saw online 6.45... --> Don't know if this code is actually for that either to be honest...
         
         # --- PUBLISHER ---
         self.cmd_vel_pub = self.create_publisher(Twist, '/cmd_vel', 10)
@@ -117,13 +117,13 @@ class CayoteInferenceNode(Node):
         grid_2d = np.array(msg.data, dtype=np.float32).reshape(msg.info.height, msg.info.width)
         
         # Treat unknown space (-1) as an obstacle (100) for safety
-        grid_2d[grid_2d == -1] = 100.0
+        grid_2d[grid_2d == -1] = 100.0 # So we only have a 100 and 0 array.
         
         # 2. Find the center coordinates (where the robot is)
         center_y = msg.info.height // 2
         center_x = msg.info.width // 2
         
-        # 3. Define crop size (10 cells in each direction = 20x20 grid)
+        # 3. Define crop size (10 cells in each direction = 20x20 grid) --> Maybe change this lowkirkenuinely
         crop = 10 
         
         # 4. Safely calculate array bounds to avoid indexing errors
@@ -149,7 +149,8 @@ class CayoteInferenceNode(Node):
         if len(self.latest_costmap_array) == 0:
             return
             
-        # 1. Build Base Observation Vector (Size: 13)
+        # 1. Build Base Observation Vector (Size: 13) --> NEED TO UPDATE THIS SO MUCH
+        # IT IS MISSING THE 4 OTHER SIDE SENSORS AND THEN ALSO NEEDS TO BE 4x AS MANY (Reoeat everything 4 times each).
         base_obs = np.array([
             self.found, 
             self.offset, 
